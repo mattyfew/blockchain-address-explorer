@@ -4,20 +4,39 @@ import axios from 'axios';
 export default class App extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            address: '',
+            addressInfo: {}
+        }
+        this.getAddressInfo = this.getAddressInfo.bind(this)
+
     }
     getAddressInfo(addr) {
-        axios.get('http://52.212.29.223/proxy/https://blockchain.info/rawaddr/1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX')
+        console.log("running getAddressInfo", addr);
+        axios.get(`http://52.212.29.223/proxy/https://blockchain.info/rawaddr/${addr}`)
             .then((result) => {
-                console.log(result.data);
+                this.setState({ addressInfo: result.data }, () => console.log(this.state))
             })
     }
     render() {
-        console.log("rendering app");
+        const children = React.cloneElement(this.props.children, {
+            onAddressChange: (e) => {
+                let address = e.target.value
+                this.setState({ address }, () => console.log("current state: ", this.state) )
+
+            },
+            getAddressInfo: () => {
+                console.log("about to run getAddressInfo", this.state.address);
+                // this.getAddressInfo(this.state.address)
+                this.getAddressInfo("1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX")
+
+            }
+        })
+
         return (
             <div >
                 <h1>My Blockchain Explorer</h1>
-                {this.props.children}
+                {children}
             </div>
         )
     }

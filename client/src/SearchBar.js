@@ -7,9 +7,7 @@ export default class SearchBar extends React.Component {
     // }
     render() {
         return (
-            <div id="search-bar">
-                <input id="search-bar-input" placeholder="enter BTC address" autoFocus/>
-            </div>
+
         )
     }
 }
