@@ -1,0 +1,17 @@
+* { font-family: Arial; }
+body { text-align: center; }
+
+#main {
+    border: 1px dotted red;
+}
+#search-bar {
+    border: 1px dotted green;
+}
+
+#search-bar input {
+    width: 80%;
+    min-height: 60px;
+    font-size: 30px;
+    text-align: center;
+    margin: 20px 0;
+}
