@@ -1,15 +1,5 @@
 import React from 'react';
-
-function renderTransactions (txs) {
-    console.log("renderTransactions", txs);
-
-    // let html = '<div id="transactions">'
-    //
-    // for (var i = 0; i < txs.length; i++) {
-    //     html += `${txs[i].}`
-    // }
-
-}
+import Moment from 'react-moment';
 
 export default function Address(props) {
     console.log("rendering Address: ", props);
@@ -26,7 +16,14 @@ export default function Address(props) {
 
             <h2>Transactions</h2>
             <section>
-                {renderTransactions(txs)}
+                { /* renderTransactions(txs) */ }
+                { txs.map(function(tx, i){
+                    // var t = new Date(tx.time);
+                    // t.setSeconds( tx.time );
+                    // console.log(t);
+                    console.log(tx.time);
+                    return <Moment className="transaction" format="DD-MM-YYYY" unix>{tx.time}</Moment>
+                })}
             </section>
         </div>
     )
