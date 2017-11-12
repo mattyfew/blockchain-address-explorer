@@ -12,24 +12,23 @@ export default class App extends React.Component {
 
     }
     getAddressInfo(addr) {
-        console.log("running getAddressInfo", addr);
         axios.get(`http://52.212.29.223/proxy/https://blockchain.info/rawaddr/${addr}`)
             .then((result) => {
-                this.setState({ addressInfo: result.data }, () => console.log(this.state))
+                this.setState({ addressInfo: result.data }, () => {
+                    this.props.router.push('/address')
+                })
             })
     }
     render() {
         const children = React.cloneElement(this.props.children, {
+            addressInfo: this.state.addressInfo,
             onAddressChange: (e) => {
                 let address = e.target.value
                 this.setState({ address }, () => console.log("current state: ", this.state) )
-
             },
             getAddressInfo: () => {
-                console.log("about to run getAddressInfo", this.state.address);
                 // this.getAddressInfo(this.state.address)
                 this.getAddressInfo("1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX")
-
             }
         })
 

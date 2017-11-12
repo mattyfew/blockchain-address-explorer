@@ -1,26 +1,33 @@
 import React from 'react';
 
-export default class Address extends React.Component {
-    // componentDidMount(){
-    //     console.log("something");
-    //     document.getElementById("search-bar-input").focus();
-    // }
-    render() {
-        return (
-            <div>
-                <section>
-                    <h3>Total Recieved: XXXX</h3>
-                    <h3>Total Sent: XXXX</h3>
-                    <h3>Final Balance: XXXX</h3>
-                </section>
+function renderTransactions (txs) {
+    console.log("renderTransactions", txs);
 
-                <h2>Transactions</h2>
-                <section>
-                    <h4>transaction #1</h4>
-                    <h4>transaction #2</h4>
-                    <h4>transaction #3</h4>
-                </section>
-            </div>
-        )
-    }
+    // let html = '<div id="transactions">'
+    //
+    // for (var i = 0; i < txs.length; i++) {
+    //     html += `${txs[i].}`
+    // }
+
+}
+
+export default function Address(props) {
+    console.log("rendering Address: ", props);
+
+    const { address, final_balance, hash160, n_tx, total_received, total_sent, txs } = props.addressInfo
+    return (
+        <div>
+            Address: {address}
+            <section>
+                <h3>Total Recieved: {total_received}</h3>
+                <h3>Total Sent: {total_sent}</h3>
+                <h3>Final Balance: {final_balance}</h3>
+            </section>
+
+            <h2>Transactions</h2>
+            <section>
+                {renderTransactions(txs)}
+            </section>
+        </div>
+    )
 }
