@@ -41,7 +41,7 @@ export default class Address extends React.Component {
         return (
             <div>
                 <header id="address-header">
-                    <h3>Address: {address}</h3>
+                    <h3 className="address">Address: {address}</h3>
                     <h3>Total Recieved: {total_received / 100000000} BTC</h3>
                     <h3>Total Sent: {total_sent / 100000000} BTC</h3>
                     <h3>Final Balance: {final_balance / 100000000} BTC</h3>
@@ -54,7 +54,7 @@ export default class Address extends React.Component {
                             <div key={i} className="transaction">
                                 <p>Date: <Moment format="DD-MM-YYYY" unix>{tx.time}</Moment></p>
                                 <p>Amount: {tx.out[0].value / 100000000} BTC</p>
-                                <p>To: <span onClick={self.handleClick}>{tx.out[0].addr}</span></p>
+                                <p className="address">To: <span onClick={self.handleClick}>{tx.out[0].addr}</span></p>
                             </div>
                         )
                     })}

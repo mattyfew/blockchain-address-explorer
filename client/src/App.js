@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router';
+import btcAddress from 'bitcoin-address';
 
 
 export default class App extends React.Component {
@@ -8,7 +9,8 @@ export default class App extends React.Component {
         super(props)
         this.state = {
             address: '',
-            addressInfo: {}
+            addressInfo: {},
+            notValid: false
         }
         this.submitAddress = this.submitAddress.bind(this)
     }
@@ -27,18 +29,25 @@ export default class App extends React.Component {
     }
 
     submitAddress(addr) {
-        axios.get(`http://52.212.29.223/proxy/https://blockchain.info/rawaddr/${addr}`)
+        if (!btcAddress.validate(addr)) {
+            this.setState({ notValid: true })
+            return
+        } else {
+            this.setState({ notValid: false })
+            axios.get(`http://52.212.29.223/proxy/https://blockchain.info/rawaddr/${addr}`)
             .then((result) => {
                 this.setState({ addressInfo: result.data }, () => {
                     this.props.router.push(`/address/${addr}`)
                 })
             })
+        }
     }
 
     render() {
         const children = React.cloneElement(this.props.children, {
             address: this.state.address,
             addressInfo: this.state.addressInfo,
+            notValid: this.state.notValid,
             onAddressChange: (e) => {
                 let address = e.target.value
                 this.setState({ address })

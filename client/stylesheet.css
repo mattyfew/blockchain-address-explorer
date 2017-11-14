@@ -50,3 +50,13 @@ body { text-align: center; }
     margin: 10px 0;
     background-color: #ecf0f1;
 }
+.address {
+    word-break: break-all;
+}
+.error {
+    color: red;
+    background-color: #f39c12;
+    margin: 15px 0 0 0;
+    padding: 20px;
+    font-size: 20px;
+}
