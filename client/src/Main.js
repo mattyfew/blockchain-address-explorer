@@ -9,17 +9,21 @@ export default class Main extends React.Component {
     render() {
         return (
             <div id="main">
-                <h1>This is the main part</h1>
+                <header>
+                    <h2>Enter a BTC address to view transaction history</h2>
+                    <p>Try 1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX</p>
+                </header>
                 <div id="search-bar">
                     <input
                         onChange={this.props.onAddressChange}
                         id="search-bar-input"
                         placeholder="enter BTC address"
-                        value="1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX"
                         autoFocus/>
-                    <button onClick={this.props.getAddressInfo}>Search</button>
+                    <button onClick={this.props.submitAddress}>Search</button>
                 </div>
             </div>
         )
     }
 }
+
+// value="1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX"

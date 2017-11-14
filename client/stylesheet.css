@@ -1,19 +1,52 @@
 * { font-family: Arial; }
 body { text-align: center; }
 
-#main {
-    border: 1px dotted red;
+#main header {
+    background-color: #f39c12;
+    padding: 20px 5px;
 }
+#app h1 a {
+    color: #2c3e50;
+    transition: color 0.3s linear
+}
+#app h1 a:hover { color: #2980b9; }
 #search-bar {
-    border: 1px dotted green;
+    /*border: 1px dotted green;*/
+}
+
+#children-container {
+    background-color: #2980b9;
+    padding: 55px;
 }
 
 #search-bar input {
-    width: 80%;
+    width: 75%;
     min-height: 60px;
     font-size: 30px;
     text-align: center;
     margin: 20px 0;
 }
+#search-bar button {
+    display: block;
+    margin: 10px auto 30px;
+    padding: 10px 50px;
+    font-size: 20px;
+    background-color: black;
+    color: #ecf0f1;
+}
+#address-header {
+    background-color: #f39c12;
+    padding: 20px 5px;
+}
+#address-header h3 { margin: 35px 2px; }
 
-.transaction { display: block; }
+#transactions {
+    margin-top: 70px;
+}
+.transaction {
+    display: block;
+    border: 1px solid black;
+    padding: 16px;
+    margin: 10px 0;
+    background-color: #ecf0f1;
+}

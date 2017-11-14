@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router';
+
 
 export default class App extends React.Component {
     constructor(props) {
@@ -8,34 +10,55 @@ export default class App extends React.Component {
             address: '',
             addressInfo: {}
         }
-        this.getAddressInfo = this.getAddressInfo.bind(this)
-
+        this.submitAddress = this.submitAddress.bind(this)
     }
-    getAddressInfo(addr) {
+
+    componentDidMount() {
+        const { location } = this.props
+        const { addressInfo } = this.state
+
+        if (location.pathname.includes('/address/') && Object.keys(addressInfo).length === 0) {
+            this.setState({
+                address: location.pathname.substring(9)
+            }, () => {
+                this.submitAddress(this.state.address)
+            })
+        }
+    }
+
+    submitAddress(addr) {
         axios.get(`http://52.212.29.223/proxy/https://blockchain.info/rawaddr/${addr}`)
             .then((result) => {
                 this.setState({ addressInfo: result.data }, () => {
-                    this.props.router.push('/address')
+                    this.props.router.push(`/address/${addr}`)
                 })
             })
     }
+
     render() {
         const children = React.cloneElement(this.props.children, {
+            address: this.state.address,
             addressInfo: this.state.addressInfo,
             onAddressChange: (e) => {
                 let address = e.target.value
-                this.setState({ address }, () => console.log("current state: ", this.state) )
+                this.setState({ address })
             },
-            getAddressInfo: () => {
-                // this.getAddressInfo(this.state.address)
-                this.getAddressInfo("1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX")
+            clickAddress: (address) => {
+                this.setState({ address }, () => {
+                    this.submitAddress(this.state.address)
+                })
+            },
+            submitAddress: () => {
+                this.submitAddress(this.state.address)
             }
         })
 
         return (
-            <div >
-                <h1>My Blockchain Explorer</h1>
-                {children}
+            <div id="app">
+                <h1><Link to="/">My Blockchain Explorer</Link></h1>
+                <div id="children-container">
+                    {children}
+                </div>
             </div>
         )
     }

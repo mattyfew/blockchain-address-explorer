@@ -13,13 +13,10 @@ const router = (
     <Router history={hashHistory}>
         <Route path="/" component={App}>
             <IndexRoute component={Main} />
-            <Route path="address" component={Address} />
+            <Route path="address/:address" component={Address} />
         </Route>
     </Router>
 )
-
-
-console.log(App);
 
 ReactDOM.render(
     router,
