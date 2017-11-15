@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router';
 import btcAddress from 'bitcoin-address';
 
-
 export default class App extends React.Component {
     constructor(props) {
         super(props)

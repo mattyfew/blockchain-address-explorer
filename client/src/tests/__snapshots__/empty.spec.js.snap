@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+<div
+  id="main"
+>
+  <header>
+    <h2>
+      Enter a BTC address to view transaction history
+    </h2>
+    <p
+      className="address"
+    >
+      Try 
+      <strong>
+        1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX
+      </strong>
+    </p>
+  </header>
+  <div
+    id="search-bar"
+  >
+    <input
+      autoFocus={true}
+      id="search-bar-input"
+      onChange={[Function]}
+      placeholder="enter BTC address"
+    />
+    <button
+      onClick={[Function]}
+    >
+      Search
+    </button>
+  </div>
+</div>
+`;

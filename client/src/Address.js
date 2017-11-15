@@ -31,7 +31,7 @@ export default class Address extends React.Component {
     render(){
         if (Object.keys(this.state.addressInfo).length === 0){
             return (
-                <div>Loading...</div>
+                <main>Loading...</main>
             )
         }
 
@@ -39,7 +39,7 @@ export default class Address extends React.Component {
         const self = this
 
         return (
-            <div>
+            <main>
                 <header id="address-header">
                     <h3 className="address">Address: {address}</h3>
                     <h3>Total Recieved: {total_received / 100000000} BTC</h3>
@@ -59,7 +59,7 @@ export default class Address extends React.Component {
                         )
                     })}
                 </section>
-            </div>
+            </main>
         )
     }
 }
