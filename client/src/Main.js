@@ -1,4 +1,6 @@
 import React from 'react';
+import { ScaleLoader } from 'react-spinners';
+
 
 export default function Main(props) {
     return (
@@ -9,6 +11,13 @@ export default function Main(props) {
             </header>
             <div id="search-bar">
                 {props.notValid && <div className="error">There is something wrong with that address</div>}
+                {props.loading &&
+                    <ScaleLoader
+                      margin={'20px 5px 5px 0'}
+                      color={'#123abc'}
+                      loading={props.loading}
+                    />
+                }
                 <input
                     onChange={props.onAddressChange}
                     id="search-bar-input"

@@ -3,13 +3,15 @@ import axios from 'axios';
 import { Link } from 'react-router';
 import btcAddress from 'bitcoin-address';
 
+
 export default class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             address: '',
             addressInfo: {},
-            notValid: false
+            notValid: false,
+            loading: false
         }
         this.submitAddress = this.submitAddress.bind(this)
     }
@@ -32,10 +34,10 @@ export default class App extends React.Component {
             this.setState({ notValid: true })
             return
         } else {
-            this.setState({ notValid: false })
+            this.setState({ notValid: false, loading: true })
             axios.get(`https://cors-anywhere.herokuapp.com/https://blockchain.info/rawaddr/${addr}` )
             .then((result) => {
-                this.setState({ addressInfo: result.data }, () => {
+                this.setState({ loading: false, addressInfo: result.data }, () => {
                     this.props.router.push(`/address/${addr}`)
                 })
             })
@@ -47,6 +49,7 @@ export default class App extends React.Component {
             address: this.state.address,
             addressInfo: this.state.addressInfo,
             notValid: this.state.notValid,
+            loading: this.state.loading,
             onAddressChange: (e) => {
                 let address = e.target.value
                 this.setState({ address })
@@ -63,6 +66,7 @@ export default class App extends React.Component {
 
         return (
             <div id="app">
+
                 <h1><Link to="/">My Blockchain Explorer</Link></h1>
                 <div id="children-container">
                     {children}

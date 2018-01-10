@@ -62,3 +62,7 @@ body { text-align: center; }
 }
 .address-cursor { cursor: pointer; }
 .address-cursor:hover { font-weight: 700; text-decoration: underline; }
+
+.loading-spinner {
+    margin-top: 20px
+}
