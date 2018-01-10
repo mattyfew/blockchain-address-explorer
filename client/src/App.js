@@ -33,7 +33,7 @@ export default class App extends React.Component {
             return
         } else {
             this.setState({ notValid: false })
-            axios.get(`http://52.212.29.223/proxy/https://blockchain.info/rawaddr/${addr}`)
+            axios.get(`https://cors-anywhere.herokuapp.com/https://blockchain.info/rawaddr/${addr}` )
             .then((result) => {
                 this.setState({ addressInfo: result.data }, () => {
                     this.props.router.push(`/address/${addr}`)

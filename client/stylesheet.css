@@ -60,3 +60,5 @@ body { text-align: center; }
     padding: 20px;
     font-size: 20px;
 }
+.address-cursor { cursor: pointer; }
+.address-cursor:hover { font-weight: 700; text-decoration: underline; }

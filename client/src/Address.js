@@ -54,7 +54,7 @@ export default class Address extends React.Component {
                             <div key={i} className="transaction">
                                 <p>Date: <Moment format="DD-MM-YYYY" unix>{tx.time}</Moment></p>
                                 <p>Amount: {tx.out[0].value / 100000000} BTC</p>
-                                <p className="address">To: <span onClick={self.handleClick}>{tx.out[0].addr}</span></p>
+                                <p className="address">To: <span className="address-cursor" onClick={self.handleClick}>{tx.out[0].addr}</span></p>
                             </div>
                         )
                     })}
